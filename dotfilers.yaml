@@ -14,6 +14,14 @@ installs:
       sudo apt install npm -y
 
 nvim:
+  # nvim config
+  - link_from: nvim/*
+    link_to: ~/.config/nvim/
+
+  - run: |
+      nvim -c PackerSync -c q
+
+nvim_install:
   # install dependencys
   - run: sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip -y
 
