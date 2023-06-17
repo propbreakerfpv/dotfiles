@@ -1,0 +1,46 @@
+.dotfilers:
+  log_level: info
+  conflict_strategy: rename-old
+
+  shell: /bin/bash -c
+
+# test:
+#   - run: |
+#       cd ~/coding/gish/
+#       cargo build --release
+
+installs:
+  - run: |
+      sudo apt install curl -y
+
+      # rust and cargo
+      curl https://sh.rustup.rs -sSf | sh
+
+nvim:
+  # install dependencys
+  - run: sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip
+
+  - run: |
+      git clone https://github.com/neovim/neovim
+      cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+      sudo make install
+      # might not be needed
+      cd -
+      rm -rf neovim
+
+  # install packer-nvim
+  - run: 
+      git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim/
+
+  # nvim config
+  - link_from: nvim/
+    link_to: ~/.config/nvim/
+
+
+
+zsh:
+  - link_from: zsh/.zshrc
+    link_to: ~/.zshrc
+
+
+
