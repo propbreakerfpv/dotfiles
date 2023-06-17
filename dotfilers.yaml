@@ -11,14 +11,11 @@
 
 installs:
   - run: |
-      sudo apt install curl -y
-
-      # rust and cargo
-      curl https://sh.rustup.rs -sSf | sh
+      sudo apt install npm
 
 nvim:
   # install dependencys
-  - run: sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip
+  - run: sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip -y
 
   - run: |
       git clone https://github.com/neovim/neovim
@@ -30,11 +27,14 @@ nvim:
 
   # install packer-nvim
   - run: 
-      git clone --depth 1 https://github.com/wbthomason/packer.nvim\ ~/.local/share/nvim/site/pack/packer/start/packer.nvim/
+      git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
   # nvim config
-  - link_from: nvim/
+  - link_from: nvim/*
     link_to: ~/.config/nvim/
+
+  - run: |
+      nvim -c PackerSync -c q
 
 
 
