@@ -8,3 +8,5 @@ source "$HOME/.cargo/env"
 git clone https://github.com/propbreakerfpv/dotfilers.git
 cd dotfilers
 cargo install --path .
+
+dotfilers
