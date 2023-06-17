@@ -1,6 +1,6 @@
 .dotfilers:
   log_level: info
-  conflict_strategy: rename-old
+  conflict_strategy: overwrite
 
   shell: /bin/bash -c
 
@@ -36,14 +36,6 @@ nvim_install:
   # install packer-nvim
   - run: 
       git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-  # nvim config
-  - link_from: nvim/*
-    link_to: ~/.config/nvim/
-
-  - run: |
-      nvim -c PackerSync -c q
-
 
 
 zsh:
