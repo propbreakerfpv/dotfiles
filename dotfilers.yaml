@@ -12,6 +12,11 @@
 installs:
   - run: |
       sudo apt install npm -y
+      cargo install exa
+      cargo install zellij
+      cargo install bat
+      cargo install ripgrep
+      cargo install zoxide
 
 
 nvim_install:
